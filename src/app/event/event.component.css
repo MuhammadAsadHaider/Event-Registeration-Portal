@@ -1,0 +1,25 @@
+p:not(.lead){
+  font-size: 0.75rem;
+}
+img{
+  width: 200px;
+}
+#message{
+  padding-top: 5%;
+}
+#secondaryContainer{
+  opacity: 0.95;
+}
+@media screen and (min-width: 800px) {
+  .bg-default{
+    background-image: url("src/assets/BackGround.jpg");
+    height: 100%;
+    background-size: cover;
+}
+  #secondaryContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

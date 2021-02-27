@@ -1,0 +1,87 @@
+<div *ngIf="!submitted" class="card">
+  <div class="card-header text-center">
+    <h2 class="display-4" style="font-size: 2rem;">Register</h2>
+  </div>
+  <div class="card-body">
+    <form #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                  <div class="input-group-text bg-white">
+                    <fa-icon [icon]="nameIcon"></fa-icon>
+                  </div>
+              </div>
+              <input type="text" name="firstName" class="form-control" [(ngModel)]="model.FirstName" #firstName="ngModel"
+              [ngClass]="{ 'is-invalid': userForm.submitted && firstName.invalid }" placeholder="First Name" required>
+              <div class="invalid-feedback" *ngIf="userForm.submitted && firstName.invalid">
+                <p *ngIf="firstName.errors.required">First Name is required</p>
+              </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-md-6">
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                  <fa-icon [icon]="nameIcon"></fa-icon>
+                </div>
+            </div>
+            <input type="text" name="lastName" class="form-control" [(ngModel)]="model.LastName" #lastName="ngModel"
+            [ngClass]="{ 'is-invalid': userForm.submitted && lastName.invalid }" placeholder="Last Name" required>
+            <div class="invalid-feedback" *ngIf="userForm.submitted && lastName.invalid">
+              <p *ngIf="lastName.errors.required">Last Name is required</p>
+            </div>
+        </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                  <div class="input-group-text bg-white">
+                    <fa-icon [icon]="mailIcon"></fa-icon>
+                  </div>
+              </div>
+              <input type="email" class="form-control" name="email" [(ngModel)]="model.Email" #email="ngModel"
+              [ngClass]="{ 'is-invalid': userForm.submitted && email.invalid }" placeholder="Email" email required>
+              <div *ngIf="userForm.submitted && email.invalid" class="invalid-feedback">
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email">Must be a valid email address</div>
+              </div>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                  <div class="input-group-text bg-white">
+                    <fa-icon [icon]="phoneIcon"></fa-icon>
+                  </div>
+              </div>
+              <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="model.PhoneNumber" #phoneNumber="ngModel"
+              [ngClass]="{ 'is-invalid': userForm.submitted && phoneNumber.invalid }" placeholder="Phone" minlength="8">
+              <div *ngIf="userForm.submitted && phoneNumber.invalid" class="invalid-feedback">
+                <div *ngIf="phoneNumber.errors.minlength">Phone Number should be at least 8 characters long</div>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button [ngStyle]="{'background-color': color}" class="btn btn-block">Submit</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+
+

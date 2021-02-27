@@ -1,0 +1,79 @@
+<div id="mainContainer" *ngIf="event" class="bg-default" [ngStyle]="backgroundStyles">
+  <div id="secondaryContainer" class="jumbotron container">
+    <div class="row">
+      <div class="col-md-9">
+        <h1>{{event.EventName}}</h1>
+        <p class="lead">{{event.EventDescription}}</p>
+      </div>
+      <div *ngIf="logo" class="cold-md-3">
+        <img [src]="logo">
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+      <div [ngClass]="{'col-md-4': (!registrationsOpen || registrationsClosed || formSubmitted),'col-md-2': !formSubmitted}">
+        <div class="row text-center">
+          <div [ngClass]="{'col-md-4': !formSubmitted, 'col-md-2': formSubmitted}">
+            <br/>
+            <fa-icon [icon]="calendarIcon" transform="grow-20 up-5"></fa-icon>
+          </div>
+          <div [ngClass]="{'col-md-8': !formSubmitted, 'col-md-4': formSubmitted}">
+            <div class="row">
+                <h6>Date</h6>
+            </div>
+            <div class="row text-left">
+              <p>{{event.Date}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [ngClass]="{'col-md-4': (!registrationsOpen || registrationsClosed || formSubmitted),'col-md-2': !formSubmitted}">
+        <div class="row text-center">
+          <div [ngClass]="{'col-md-4': !formSubmitted, 'col-md-2': formSubmitted}">
+            <br/>
+            <fa-icon [icon]="hostIcon" transform="grow-20 up-5"></fa-icon>
+          </div>
+          <div [ngClass]="{'col-md-8': !formSubmitted, 'col-md-4': formSubmitted}">
+            <div class="row">
+                <h6>Host</h6>
+            </div>
+            <div class="row text-left">
+              <p>{{event.Owner}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!registrationsOpen" class="col-md-4">
+        <div class="row text-center">
+          <div class="col-md-4">
+            <br/>
+            <fa-icon [icon]="registrationsOpeningIcon" transform="grow-20 up-5"></fa-icon>
+          </div>
+          <div class="col-md-8">
+            <div class="row">
+                <h6>Registration Opening On</h6>
+            </div>
+            <div class="row text-left">
+              <p>{{event.RegistrationOpen}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="registrationsClosed || formSubmitted" class="col-md-4">
+        <div class="row text-center">
+          <div class="col-md-2">
+            <br/>
+            <fa-icon [icon]="alertIcon" transform="grow-20 up-5"></fa-icon>
+          </div>
+          <div id="message" class="col-md-8">
+            <h5>{{message}}</h5>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="registrationsOpen && !registrationsClosed &&!formSubmitted" class="col-md-8">
+        <app-registration-form (formSubmitted)='onFormSubmitted($event)' [eventId]="event.EventId" [color]="buttonColor" [siteName]="this.siteName"></app-registration-form>
+      </div>
+    </div>
+  </div>
+</div>
+
